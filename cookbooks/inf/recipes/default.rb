@@ -11,7 +11,7 @@ if platform_family?('mac_os_x')
   include_recipe 'homebrew'
 end
 
-%w[ git ctags vim ].each do |recipe|
+%w[ git ctags vim tmux ].each do |recipe|
   include_recipe "#{cookbook_name}::#{recipe}"
 end
 

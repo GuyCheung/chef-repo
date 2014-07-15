@@ -7,15 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
-require 'etc'
-
 include_recipe "#{cookbook_name}::git"
 include_recipe "#{cookbook_name}::ctags"
 
 package 'vim'
 
-(((node['deployment'] || {})['users'] || []) << node['current_user']).uniq.each do |_user|
-  userhome = Etc.getpwnam(_user).dir
+all_custom_users do |options|
+  _user = options[:user]
+  userhome = options[:homepath]
 
   cookbook_file "#{userhome}/.vimrc" do
     mode '0644'

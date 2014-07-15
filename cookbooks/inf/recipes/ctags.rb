@@ -15,3 +15,11 @@ when 'mac_os_x'
 when 'rhel'
   package 'ctags'
 end
+
+all_custom_users do |options|
+  cookbook_file "#{options[:homepath]}/.ctags" do
+    mode '0644'
+    user options[:user]
+    source 'ctags/ctags'
+  end
+end
