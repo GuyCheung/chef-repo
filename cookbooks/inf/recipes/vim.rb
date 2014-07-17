@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+default_deps
 include_recipe "#{cookbook_name}::git"
 include_recipe "#{cookbook_name}::ctags"
 

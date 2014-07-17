@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+default_deps
 package 'tmux'
-
 
 all_custom_users do |options|
   cookbook_file "#{options[:homepath]}/.tmux.conf" do

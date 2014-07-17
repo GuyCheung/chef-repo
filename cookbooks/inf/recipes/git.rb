@@ -7,4 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
+default_deps
+
 package 'git'

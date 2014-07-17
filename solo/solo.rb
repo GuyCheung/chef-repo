@@ -21,8 +21,9 @@ class LinkDependsCookbook
         next if b_cb.path.to_s == File.expand_path(cb)
 
         link_name = "#{@link_target_path}/#{b_cb.cookbook_name}"
-        FileUtils.rm_f link_name
-        File.symlink(b_cb.path.to_s, link_name)
+        #FileUtils.rm_f link_name
+        #File.symlink(b_cb.path.to_s, link_name)
+        FileUtils.cp_r b_cb.path.to_s, link_name
       end
     end
   end
@@ -36,12 +37,11 @@ file_backup_path File.join(home_dir, '.chef/backup')
 
 cookbook_path [
   File.join(self_path, '../cookbooks'),
-  File.join(home_dir, '.chef/cookbooks'),
 ]
 
 json_attribs File.join(self_path, 'node.json')
 
 Process.fork do
-  LinkDependsCookbook.new(File.join(self_path, '../cookbooks'), File.join(home_dir, '.chef/cookbooks')).exec
+  LinkDependsCookbook.new(File.join(self_path, '../cookbooks'), File.join(self_path, '../cookbooks')).exec
 end
 Process.wait

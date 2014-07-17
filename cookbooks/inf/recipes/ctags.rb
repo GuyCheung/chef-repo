@@ -7,14 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-case node['platform_family']
-when 'debian'
-  package 'exuberant-ctags'
-when 'mac_os_x'
-  package 'ctags'
-when 'rhel'
-  package 'ctags'
-end
+default_deps
+
+package node['ctags']['package_name']
 
 all_custom_users do |options|
   cookbook_file "#{options[:homepath]}/.ctags" do
